@@ -66,20 +66,21 @@
         MDA mda{G, potential};
         Solution sol_bda_forward(graphName, sourceId, targetId, G);
         mda.run(sol_bda_forward);
-        sol_bda_forward.print("MDA", "");
+        mda.printSolutions();
+//        sol_bda_forward.print("MDA", "");
 //        sol_bda_forward.print("MDA", host);
 #endif
 
-#ifdef _NAMOA_
-        {
-            Solution sol(graphName, sourceId, targetId, G);
-            Martins martins{G, potential};
-            martins.run(sol);
-            martins.run(sol);
-            sol.print("Martins", "");
-//            sol.print("Martins", host);
-        }
-#endif
+// #ifdef _NAMOA_
+//         {
+//             Solution sol(graphName, sourceId, targetId, G);
+//             Martins martins{G, potential};
+//             martins.run(sol);
+//             martins.run(sol);
+//             sol.print("Martins", "");
+//             sol.print("Martins", host);
+//         }
+// #endif
 
         //assert(namoa_solutions == mda_solutions);
     }

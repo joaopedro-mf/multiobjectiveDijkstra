@@ -6,6 +6,7 @@
 #define MDA_STAR_H
 
 #include <unordered_map>
+#include <string>
 
 #include "../../datastructures/includes/BinaryHeapMosp.h"
 #include "../../datastructures/includes/Label.h"
@@ -188,11 +189,14 @@ public:
 
         size_t printedPaths{0};
         for (const auto l : targetFront) {
-            printf("Path number %lu with costs: %s.\n", printedPaths++, to_string(l->c).c_str());
+            //printf("Path number %lu with costs: %s.\n", printedPaths++, to_string(l->c).c_str());
+            printf( "%s", to_string(l->c).c_str());
+            std::string path;
             auto predLabel = l;
             while (predLabel != nullptr) {
-                printf("\tNode: %u with costs %s.\n",
-                       predLabel->n, to_string(predLabel->c).c_str());
+                //printf("\tNode: %u with costs %s.\n", predLabel->n, to_string(predLabel->c).c_str());
+                path += std::to_string(predLabel->n);
+                path += ",";
                 if (predLabel->predArcId == INVALID_ARC) {
                     break;
                 }
@@ -200,6 +204,9 @@ public:
                         this->minCompleteSets[G.incomingArcs(predLabel->n)[predLabel->predArcId].n];
                 predLabel = predecessorFront[predLabel->permanentIndexOfSubpath];
             }
+            printf( ";[%s];", path.c_str());
+            printf("?");
+            //break;
         }
     }
 
